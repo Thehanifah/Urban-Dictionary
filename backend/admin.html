@@ -1,0 +1,60 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Interface</title>
+</head>
+<body>
+  <h1>Admin Interface</h1>
+  <label for="idsToDelete">Enter IDs to delete (comma-separated):</label>
+  <input type="text" id="idsToDelete" placeholder="e.g., 0,1,2,11">
+  <button id="deleteEntries">Delete Selected Entries</button>
+
+  <script>
+    document.getElementById('deleteEntries').addEventListener('click', () => {
+      const idsInput = document.getElementById('idsToDelete').value;
+      const ids = idsInput.split(',').map(id => parseInt(id.trim(), 10)).filter(id => !isNaN(id));
+      
+      if (ids.length === 0) {
+        alert('Please enter valid IDs.');
+        return;
+      }
+
+      fetch('http://localhost:5001/cards', {
+        method: 'DELETE',
+        headers: {
+          'x-api-key': 'a9b066f6-fba2-4bb5-b587-a611ecf04f32',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ids })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Deleted entries:', data);
+        alert(data.message || 'Selected entries deleted successfully');
+        
+        // Re-fetch data after deletion
+        fetch('http://localhost:5001/cards')
+          .then(response => response.json())
+          .then(cards => {
+            console.log('Updated cards:', cards);
+          });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to delete selected entries');
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+<!--  -->

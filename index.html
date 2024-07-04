@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Dictionary</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx">
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "fetchData") {
+        fetchSomeData().then(data => {
+            sendResponse({ success: true, data: data });
+        }).catch(error => {
+            sendResponse({ success: false, error: error });
+        });
+        return true; // Keeps the message channel open for sendResponse
+    }
+});
+
+
+    </script>
+  </body>
+</html>
