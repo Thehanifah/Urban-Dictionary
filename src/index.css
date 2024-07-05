@@ -186,6 +186,7 @@ outline: none;
 
 #searchInput[type="text"] {
  font-size: 1rem;
+ color: #000000;
  }
 
 
@@ -276,7 +277,9 @@ background-color: #ffffff !important;
   font-size: 2.5em;
   padding-left: 1.2rem; 
   padding-top: 1rem;
-  box-sizing: border-box; }
+  box-sizing: border-box; 
+  color: #000000;
+}
 
 
 .word:hover, .desc:hover{ 
@@ -301,6 +304,7 @@ background-color: #ffffff !important;
   padding-left: 1em;
   padding-top: 1rem;
   box-sizing: border-box; 
+  color: #000000;
 }
   
 .desc[type="text"]::placeholder {
