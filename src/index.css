@@ -193,6 +193,7 @@ outline: none;
     font-style: italic;
     text-align: left;
     padding: 0%;
+    background-color: #fff;
   }
 
 #Search-icon{
@@ -261,10 +262,12 @@ color: #fff;
   width: 100%;
   padding: 0;
   margin-bottom: 2em;
+  
 }
 
 .word{
 height: 20%;
+background-color: #fff;
 }
 
 .word[type="text"]
@@ -288,6 +291,7 @@ height: 20%;
 
 .desc{
   height: 40%;
+  background-color: #fff;
 }
 
 .desc[type="text"] {
